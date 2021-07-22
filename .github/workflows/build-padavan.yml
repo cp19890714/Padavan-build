@@ -32,7 +32,7 @@ jobs:
         pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget
     - name: Clone source code
       run: |
-        git clone --depth=1 https://github.com/chongshengB/rt-n56u.git /opt/rt-n56u
+        git clone --depth=1 https://github.com/cp19890714/rt-n56u.git /opt/rt-n56u
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
         mkdir -p /opt/images/
@@ -97,6 +97,8 @@ jobs:
         #echo "自定义项=y" >> .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_RPL2TP/d' .config #l2tp
         echo "CONFIG_FIRMWARE_INCLUDE_RPL2TP=n" >> .config #l2tp
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_HTOP/d' .config #l2tp
+        echo "CONFIG_FIRMWARE_INCLUDE_HTOP=n" >> .config #l2tp
         #########################################################################################
         sudo ./clear_tree
         sudo ./build_firmware_modify $TNAME 0
